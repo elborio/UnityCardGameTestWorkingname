@@ -3,20 +3,17 @@ using System.Collections;
 
 public class GameController : MonoBehaviour 
 {
-	public enum gameState
+	void Start()
 	{
-		CHOOSING,
-		FIGHTING,
-		TRADING,
-		LOOTING,
-		WAITING
+		GameStates.gameState = States.GameState.WAITING;
+	}
+	void Update()
+	{
+		Debug.Log (GameStates.gameState);
 	}
 
-	public enum eventType
+	public void ChangeState()
 	{
-		TREASUREROOM,
-		STORY,
-		LEGENDARYMONSTER,
-		MONSTER
+		GameStates.gameState = States.GameState.FIGHTING;
 	}
 }
