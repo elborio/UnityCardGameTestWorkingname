@@ -10,7 +10,8 @@ namespace States
 		TRADING,
 		LOOTING,
 		WAITING
-	};
+	}
+	;
 	
 	public enum EventType
 	{
@@ -18,7 +19,8 @@ namespace States
 		STORY,
 		LEGENDARYMONSTER,
 		MONSTER
-	};
+	}
+	;
 }
 
 public static class GameStates
