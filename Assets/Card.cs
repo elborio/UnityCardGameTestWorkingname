@@ -16,8 +16,12 @@ public class Card : MonoBehaviour
     private bool hoverOver, wasHovered = false;
     private Transform visualRepresentation;
 
+    //gamecontroller script.
+    GameController gc;
+
     void Start()
     {
+        gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         showingPosition = Camera.main.transform.position + Vector3.forward * distanceFromCamera;
         snaps = GameObject.FindGameObjectsWithTag("CardSnap");
         isDraggable = true;
@@ -30,17 +34,17 @@ public class Card : MonoBehaviour
     void Update()
     {
         //Move card with mouse
-        MoveCardWithMouse();
-        //Debug.Log(Input.mousePosition);
-
-        if (hoverOver && !isPickedUp)
+        if (isPickedUp)
+        {
+            MoveCardWithMouse();
+        } else if (hoverOver && !isPickedUp)
         {
             MoveCardInFrontOfCam();
         } else if (wasHovered && !isPickedUp)
         {
             MoveToLastPos(visualRepresentation);
 
-            Debug.Log("Why is this called: "+ wasHovered + " isPickedup: " +isPickedUp+"\n");
+            Debug.Log("Why is this called: " + wasHovered + " isPickedup: " + isPickedUp + "\n");
             wasHovered = false;
         }
     }
@@ -48,10 +52,12 @@ public class Card : MonoBehaviour
     void OnMouseDown()
     {
         Debug.Log("test");
-        if (!isPickedUp && isDraggable)
+        if (!isPickedUp && isDraggable && gc.isDragging)
         {   
             lastPosition = transform.position;
             isPickedUp = true;
+            //set global value to make sure no more than one card is dragged.
+            gc.isDragging = true;
         } else if (isPickedUp)
         {
             isPickedUp = false;
@@ -59,6 +65,7 @@ public class Card : MonoBehaviour
             {
                 lastPosition = snapTo.transform.position;
             }
+            gc.isDragging = false;
             transform.position = lastPosition;
         }
     }
@@ -77,20 +84,17 @@ public class Card : MonoBehaviour
 
     void MoveCardWithMouse()
     {
-        if (isPickedUp)
-        {
-            ResetVisualRep();
-            MoveToLastPos(visualRepresentation);
-            Vector3 mousePosition = Input.mousePosition;
-            Vector3 convertedPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 10));
-            transform.position = convertedPosition;
-            SnapToClosest();
-        }
+        ResetVisualRep();
+        MoveToLastPos(visualRepresentation);
+        Vector3 mousePosition = Input.mousePosition;
+        Vector3 convertedPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 10));
+        transform.position = convertedPosition;
+        SnapToClosest();
     }
 
     void MoveCardInFrontOfCam()
     {
-        visualRepresentation.position= Vector3.Lerp(visualRepresentation.position, showingPosition, Time.deltaTime * moveSpeed);
+        visualRepresentation.position = Vector3.Lerp(visualRepresentation.position, showingPosition, Time.deltaTime * moveSpeed);
     }
 
     void MoveToLastPos()
@@ -98,15 +102,16 @@ public class Card : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, lastPosition, Time.deltaTime * moveSpeed);
     }
 
-    void MoveToLastPos(Transform t )
+    void MoveToLastPos(Transform t)
     {
         t.position = Vector3.Lerp(t.position, lastPosition, Time.deltaTime * moveSpeed);
     }
 
     void ResetVisualRep()
     {
-        visualRepresentation.position = Vector3.Lerp(visualRepresentation.position,transform.position, Time.deltaTime * moveSpeed);
+        visualRepresentation.position = Vector3.Lerp(visualRepresentation.position, transform.position, Time.deltaTime * moveSpeed);
     }
+
     void SnapToClosest()
     {
         float closest = int.MaxValue;
