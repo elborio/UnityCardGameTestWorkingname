@@ -13,7 +13,7 @@ public class Card : MonoBehaviour
     public int distanceFromCamera = 5;
     private Vector3 showingPosition;
     public float moveSpeed = 10;
-    private bool hoverOver, wasHovered = false;
+    public bool hoverOver, wasHovered = false;
     private Transform visualRepresentation;
 
     //gamecontroller script.
@@ -34,25 +34,25 @@ public class Card : MonoBehaviour
     void Update()
     {
         //Move card with mouse
-        if (isPickedUp)
+        if (isPickedUp) //when the card is being picked up.
         {
             MoveCardWithMouse();
-        } else if (hoverOver && !isPickedUp)
+            Debug.Log("moveing with mouse");
+        } else if (hoverOver && !isPickedUp) //when the card is not picked up but is hovered.
         {
             MoveCardInFrontOfCam();
-        } else if (wasHovered && !isPickedUp)
+            Debug.Log("when the card is not picked up but is hovered");
+        } else if (!hoverOver && !isPickedUp) //was recently hovered and needs to be returend to parent object.
         {
-            MoveToLastPos(visualRepresentation);
-
-            Debug.Log("Why is this called: " + wasHovered + " isPickedup: " + isPickedUp + "\n");
-            wasHovered = false;
+            ResetVisualRep();
+            Debug.Log("was recently hovered and needs to be returned to parent object.");
         }
     }
 
     void OnMouseDown()
     {
         Debug.Log("test");
-        if (!isPickedUp && isDraggable && gc.isDragging)
+        if (!isPickedUp && isDraggable && !gc.isDragging)
         {   
             lastPosition = transform.position;
             isPickedUp = true;
@@ -78,16 +78,14 @@ public class Card : MonoBehaviour
     void OnMouseExit()
     {
         hoverOver = false;
-        wasHovered = true;
         Debug.Log("moved from collider");
     }
 
     void MoveCardWithMouse()
     {
         ResetVisualRep();
-        MoveToLastPos(visualRepresentation);
         Vector3 mousePosition = Input.mousePosition;
-        Vector3 convertedPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 10));
+        Vector3 convertedPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 18)); //now uses 20 cuz camera is 20 away from the board
         transform.position = convertedPosition;
         SnapToClosest();
     }
