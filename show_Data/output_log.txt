@@ -1,0 +1,89 @@
+Initialize engine version: 5.1.1f1 (2046fc06d4d8)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 970 (ID=0x13c2)
+    Vendor:   NVIDIA
+    VRAM:     3072 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: E:\Programming\Git Clones\UnityCardGameTestWorkingname\show_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading E:\Programming\Git Clones\UnityCardGameTestWorkingname\show_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: E:\Programming\Git Clones\UnityCardGameTestWorkingname\show_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading E:\Programming\Git Clones\UnityCardGameTestWorkingname\show_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: E:\Programming\Git Clones\UnityCardGameTestWorkingname\show_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading E:\Programming\Git Clones\UnityCardGameTestWorkingname\show_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: E:\Programming\Git Clones\UnityCardGameTestWorkingname\show_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading E:\Programming\Git Clones\UnityCardGameTestWorkingname\show_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: E:\Programming\Git Clones\UnityCardGameTestWorkingname\show_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading E:\Programming\Git Clones\UnityCardGameTestWorkingname\show_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+Platform assembly: E:\Programming\Git Clones\UnityCardGameTestWorkingname\show_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading E:\Programming\Git Clones\UnityCardGameTestWorkingname\show_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: E:\Programming\Git Clones\UnityCardGameTestWorkingname\show_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading E:\Programming\Git Clones\UnityCardGameTestWorkingname\show_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.115 seconds
+desktop: 1920x1080 60Hz; virtual: 3286x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: E:\Programming\Git Clones\UnityCardGameTestWorkingname\show_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: E:\Programming\Git Clones\UnityCardGameTestWorkingname\show_Data\Managed\System.dll (this message is harmless)
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: ef8 -> priority: 1 
+  Thread -> id: f00 -> priority: 1 
+Failed to read the ID for the match maker, please set the Cloud Project ID string in the Player Settings (see https://unet.cloud.unity3d.com).
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+MatchMakingClient ListMatches :https://mm.unet.unity3d.com/json/reply/ListMatchRequest
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+System.FormatException: FAILURE Returned from server: ListMatch Received invalid request for appId=Invalid
+  at UnityEngine.Networking.Match.Response.Parse (System.Object obj) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Networking.Match.ListMatchResponse.Parse (System.Object obj) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Networking.Match.NetworkMatch+<ProcessMatchResponse>c__Iterator0`1[UnityEngine.Networking.Match.ListMatchResponse].MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at UnityEngine.Networking.Match.ListMatchResponse.ToString () [0x00000] in <filename unknown>:0 
+  at UnityEngine.Networking.Match.NetworkMatch+<ProcessMatchResponse>c__Iterator0`1[UnityEngine.Networking.Match.ListMatchResponse].MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+MatchMakingClient Create :https://mm.unet.unity3d.com/json/reply/CreateMatchRequest
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+System.FormatException: FAILURE Returned from server: Failed CreateMatch for appId=Invalid
+  at UnityEngine.Networking.Match.Response.Parse (System.Object obj) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Networking.Match.CreateMatchResponse.Parse (System.Object obj) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Networking.Match.NetworkMatch+<ProcessMatchResponse>c__Iterator0`1[UnityEngine.Networking.Match.CreateMatchResponse].MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+JSON Response: [[UnityEngine.Networking.Match.CreateMatchResponse]-success:False-extendedInfo:Failed CreateMatch for appId=Invalid]-address:,port:0,networkId:0x0000000000000000,nodeId:0x0000,usingRelay:False
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Create Failed:[[UnityEngine.Networking.Match.CreateMatchResponse]-success:False-extendedInfo:Failed CreateMatch for appId=Invalid]-address:,port:0,networkId:0x0000000000000000,nodeId:0x0000,usingRelay:False
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+MatchMakingClient ListMatches :https://mm.unet.unity3d.com/json/reply/ListMatchRequest
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+System.FormatException: FAILURE Returned from server: ListMatch Received invalid request for appId=Invalid
+  at UnityEngine.Networking.Match.Response.Parse (System.Object obj) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Networking.Match.ListMatchResponse.Parse (System.Object obj) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Networking.Match.NetworkMatch+<ProcessMatchResponse>c__Iterator0`1[UnityEngine.Networking.Match.ListMatchResponse].MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at UnityEngine.Networking.Match.ListMatchResponse.ToString () [0x00000] in <filename unknown>:0 
+  at UnityEngine.Networking.Match.NetworkMatch+<ProcessMatchResponse>c__Iterator0`1[UnityEngine.Networking.Match.ListMatchResponse].MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+

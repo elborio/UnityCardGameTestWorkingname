@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class Card : MonoBehaviour
 {
     public bool isDraggable;
@@ -15,6 +16,9 @@ public class Card : MonoBehaviour
     public float moveSpeed = 10;
     public bool hoverOver, wasHovered = false;
     private Transform visualRepresentation;
+
+    //Card Stats and all that.
+    public Types.cardType cardType;
 
     //gamecontroller script.
     GameController gc;
@@ -93,6 +97,8 @@ public class Card : MonoBehaviour
     void MoveCardInFrontOfCam()
     {
         visualRepresentation.position = Vector3.Lerp(visualRepresentation.position, showingPosition, Time.deltaTime * moveSpeed);
+        visualRepresentation.GetComponent<SpriteRenderer>().sortingOrder = 2;
+        visualRepresentation.GetComponentInChildren<Canvas>().sortingOrder = 3;
     }
 
     void MoveToLastPos()
@@ -108,6 +114,8 @@ public class Card : MonoBehaviour
     void ResetVisualRep()
     {
         visualRepresentation.position = Vector3.Lerp(visualRepresentation.position, transform.position, Time.deltaTime * moveSpeed);
+        visualRepresentation.GetComponent<SpriteRenderer>().sortingOrder = 0;
+        visualRepresentation.GetComponentInChildren<Canvas>().sortingOrder = 1;
     }
 
     void SnapToClosest()
