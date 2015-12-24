@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - CardSnap
+  - CardManager
   layers:
   - Default
   - TransparentFX

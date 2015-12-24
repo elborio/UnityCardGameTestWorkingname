@@ -1,0 +1,2 @@
+card size 56mm x 82mm = about 210 x 310 pix = 0.056/210 x 0.082/310 scale in unity 
+

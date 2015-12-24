@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(GameStates.gameState);
+        //Debug.Log(GameStates.gameState);
     }
 
     public void ChangeState()

@@ -2,15 +2,19 @@
 using System.Collections;
 
 
-public class Card : MonoBehaviour
+public class CardAnimator : MonoBehaviour
 {
     public bool isDraggable;
     public bool isPickedUp;
+    public float movingHeight;
+
     private bool isSnapped;
     private GameObject snapTo;
     public int cardDropSnapRange = 10;
     private GameObject[] snaps;
     private Vector3 lastPosition;
+
+    private Camera mainCam;
     public int distanceFromCamera = 5;
     private Vector3 showingPosition;
     public float moveSpeed = 10;
@@ -26,7 +30,8 @@ public class Card : MonoBehaviour
     void Start()
     {
         gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-        showingPosition = Camera.main.transform.position + Vector3.forward * distanceFromCamera;
+        mainCam = Camera.main;
+        showingPosition = mainCam.transform.position + mainCam.transform.forward * distanceFromCamera; 
         snaps = GameObject.FindGameObjectsWithTag("CardSnap");
         isDraggable = true;
         isPickedUp = false;
@@ -41,22 +46,24 @@ public class Card : MonoBehaviour
         if (isPickedUp) //when the card is being picked up.
         {
             MoveCardWithMouse();
-            Debug.Log("moveing with mouse");
+            //Debug.Log("moveing with mouse");
         } else if (hoverOver && !isPickedUp) //when the card is not picked up but is hovered.
         {
             MoveCardInFrontOfCam();
-            Debug.Log("when the card is not picked up but is hovered");
+            //Debug.Log("when the card is not picked up but is hovered");
         } else if (!hoverOver && !isPickedUp) //was recently hovered and needs to be returend to parent object.
         {
             ResetVisualRep();
-            Debug.Log("was recently hovered and needs to be returned to parent object.");
+            //Debug.Log("was recently hovered and needs to be returned to parent object.");
         }
     }
 
     void OnMouseDown()
     {
-        Debug.Log("test");
-        if (!isPickedUp && isDraggable && !gc.isDragging)
+       // Debug.Log("test");
+
+        //also checks if player is already dragging. Through gc.
+        if (!isPickedUp && isDraggable && !gc.isDragging) 
         {   
             lastPosition = transform.position;
             isPickedUp = true;
@@ -82,14 +89,15 @@ public class Card : MonoBehaviour
     void OnMouseExit()
     {
         hoverOver = false;
-        Debug.Log("moved from collider");
+        //Debug.Log("moved from collider");
     }
 
     void MoveCardWithMouse()
     {
+        //Since mouse over put the card in from of the cam we have to reset this first.
         ResetVisualRep();
         Vector3 mousePosition = Input.mousePosition;
-        Vector3 convertedPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 18)); //now uses 20 cuz camera is 20 away from the board
+        Vector3 convertedPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, mainCam.transform.position.y - movingHeight)); //now uses 20 cuz camera is 20 away from the board
         transform.position = convertedPosition;
         SnapToClosest();
     }
@@ -97,6 +105,8 @@ public class Card : MonoBehaviour
     void MoveCardInFrontOfCam()
     {
         visualRepresentation.position = Vector3.Lerp(visualRepresentation.position, showingPosition, Time.deltaTime * moveSpeed);
+
+        //Make sure card is rendered in front.
         visualRepresentation.GetComponent<SpriteRenderer>().sortingOrder = 2;
         visualRepresentation.GetComponentInChildren<Canvas>().sortingOrder = 3;
     }
